@@ -35,3 +35,7 @@ window.addEventListener("load", async () => {
     afficherCanapes(canapes);
   });   
 
+
+
+
+

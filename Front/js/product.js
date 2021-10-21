@@ -58,7 +58,7 @@ function chargementProduit(canape)
 
                         <div class="item__content__settings__quantity">
                         <label for="itemQuantity">Nombre d'article(s) (1-100) :</label>
-                        <input type="number" name="itemQuantity" min="1" max="100" value="0" id="quantity">
+                        <input type="number" name="itemQuantity" min="1" max="100" value="1" id="quantity">
                         </div>
                     </div>
 
@@ -70,7 +70,70 @@ function chargementProduit(canape)
                 </article>
                 `
     document.getElementById("items").innerHTML += html;
+
+    document.getElementById("addToCart").addEventListener("click", () => {
+        setData(canape);
+    })
 }
+
+// Recuperation de la couleur du canapé
+
+function couleurSelection() {
+    const couleurs = document.getElementById("colors");
+
+    if(couleurs.value === "")
+        throw "Vous n'avez pas sélectionnez de couleur !";
+        
+    return couleurs.value;
+}
+
+// Recuperation du nombre de canapé
+
+function nombreSection() {
+    const nombre = document.getElementById("quantity");
+    // si la quantité est entre 0 et 100 on retourne la valeur 
+    if(nombre.value > 0 && nombre.value <= 100)
+    {
+        return parseInt(nombre.value);
+    }
+    else
+    // sinon erreur 
+        throw "La quantité saisie n'est pas correcte";
+}
+
+// Envoyer la couleur, le nombre de canape et l'ID au local storage
+
+function setData(canape) {
+
+    // on test si c'est tout bon  
+    try{
+        let optionProduit = {
+            id: canape._id,
+            couleur: couleurSelection(),
+            nombre: nombreSection(),
+        }
+        let panierData = localStorage.getItem("Produit");
+
+        if(panierData)
+        {
+            panier = JSON.parse(panierData)
+        }
+
+        panier.push(optionProduit);
+        
+        
+        localStorage.setItem("Produit",JSON.stringify(panier));      
+    }
+
+    // si ça ne l'est pas --> alert erreur
+    catch(exception)
+    {
+        alert(exception);
+    }
+}
+
+let panier = [];
+
 
 // Tout est ok on peut lancer le script
 

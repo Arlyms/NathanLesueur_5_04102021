@@ -65,6 +65,13 @@ h2 {
 	margin-right: 10px;
 	display: flex;
 }
+.cart__item__content__settings__color {
+	display: flex;
+}
+.cart__item__content__settings__color p {
+	margin-right: 10px;
+	display: flex;
+}
 .cart__item__content__settings__delete p {
 	display: inline;
 }
