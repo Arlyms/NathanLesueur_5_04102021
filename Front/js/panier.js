@@ -2,7 +2,8 @@ function chargerPanier()
 {
   // Recuperation du panier dans le local storage 
   const panierData = localStorage.getItem("Produit");
-
+  let panier = [];
+  
   if(panierData)
     panier = JSON.parse(panierData);
 
@@ -17,7 +18,7 @@ async function chargerCanape(id)
     return canape;
 }
 
-// calculer la somme total du panier 
+// calculer la somme total du panier + boutons suppression 
 
 async function totalPanier(panier)
 {
@@ -31,11 +32,9 @@ async function totalPanier(panier)
     //  Total <- Total + (Prix du canapé * Nombre de ce canapé)
     total = total + (canape.price * produit.nombre);
     nombreDeCanape = nombreDeCanape +produit.nombre;
-    //Fin pour
+   
   }
-  //Afficher total
-  console.log(total);
-  
+
   document.getElementById("totalQuantity").innerHTML = nombreDeCanape;
   document.getElementById("totalPrice").innerHTML = total;
 }
@@ -58,7 +57,7 @@ async function afficherPanier(panier)
                 <div class="cart__item__content">
                   <div class="cart__item__content__titlePrice">
                     <h2>${canape.name}</h2>
-                    <p>${canape.price * produit.nombre} €</p>
+                    <p>${(canape.price * produit.nombre)} €</p>
                   </div>
                   <div class="cart__item__content__settings">
                     <div class="cart__item__content__settings__quantity">
@@ -97,9 +96,6 @@ async function afficherPanier(panier)
       });
      }
 } 
-
-// formulaire 
-
 
 
 window.addEventListener("load", () => {

@@ -113,16 +113,18 @@ function setData(canape) {
             nombre: nombreSection(),
         }
         let panierData = localStorage.getItem("Produit");
+        let panier = [];
 
         if(panierData)
         {
             panier = JSON.parse(panierData)
         }
 
+        
         panier.push(optionProduit);
+        localStorage.setItem("Produit",JSON.stringify(panier)); 
+        alert('Produit ajouté au panier'); 
         
-        
-        localStorage.setItem("Produit",JSON.stringify(panier));      
     }
 
     // si ça ne l'est pas --> alert erreur
@@ -132,7 +134,7 @@ function setData(canape) {
     }
 }
 
-let panier = [];
+
 
 
 // Tout est ok on peut lancer le script
