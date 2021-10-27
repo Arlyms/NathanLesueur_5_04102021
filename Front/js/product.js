@@ -123,7 +123,7 @@ function setData(canape) {
         
         panier.push(optionProduit);
         localStorage.setItem("Produit",JSON.stringify(panier)); 
-        alert('Produit ajouté au panier'); 
+        location.replace("cart.html");
         
     }
 

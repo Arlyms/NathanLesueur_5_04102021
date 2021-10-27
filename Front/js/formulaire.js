@@ -46,6 +46,7 @@ formulaire.addEventListener('submit', async (e) => {
     //const products = panier.map((product) => { return product.id});
     // Identique à :
     const products = [];
+
     for(const product of panier)
     {
       products.push(product.id);

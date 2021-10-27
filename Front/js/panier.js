@@ -4,6 +4,14 @@ function chargerPanier()
   const panierData = localStorage.getItem("Produit");
   let panier = [];
   
+  titre = document.getElementById("titre");
+ 
+  if(panierData === ""){
+    titre.innerHTML = 'Votre panier est vide';
+  }else {
+    titre.innerHTML = 'Votre panier';
+  }
+
   if(panierData)
     panier = JSON.parse(panierData);
 
