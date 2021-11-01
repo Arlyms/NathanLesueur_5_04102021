@@ -43,6 +43,12 @@ formulaire.addEventListener('submit', async (e) => {
 
     const panier = chargerPanier();
 
+    if(panier.length === 0)
+    {
+      alert("Panier vide !");
+      return;
+    }
+
     //const products = panier.map((product) => { return product.id});
     // Identique à :
     const products = [];
