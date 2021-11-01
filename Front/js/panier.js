@@ -4,13 +4,6 @@ function chargerPanier()
   const panierData = localStorage.getItem("Produit");
   let panier = [];
   
-  titre = document.getElementById("titre");
- 
-  if(panierData === ""){
-    titre.innerHTML = 'Votre panier est vide';
-  }else {
-    titre.innerHTML = 'Votre panier';
-  }
 
   if(panierData)
     panier = JSON.parse(panierData);
@@ -26,7 +19,7 @@ async function chargerCanape(id)
     return canape;
 }
 
-// calculer la somme total du panier + boutons suppression 
+// calculer la somme total du panier  
 
 async function totalPanier(panier)
 {
@@ -51,6 +44,14 @@ async function totalPanier(panier)
 
 async function afficherPanier(panier)
 {
+    titre = document.getElementById("titre");
+  
+    if(panier.length){
+      titre.innerHTML = 'Votre panier';      
+    }else {
+      titre.innerHTML = 'Votre panier est vide';
+    }
+
     let html = "";
     let index = 0;
     for(const produit of panier)
@@ -105,6 +106,7 @@ async function afficherPanier(panier)
      }
 } 
 
+// Tout est ok on peut lancer le script
 
 window.addEventListener("load", () => {
   const panier = chargerPanier();  

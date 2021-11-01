@@ -1,3 +1,5 @@
+// Recuperer l'ID par l'URL
+
 const params = new URL(document.location).searchParams;
 
     if(params.has("id")){

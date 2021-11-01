@@ -107,11 +107,14 @@ function setData(canape) {
 
     // on test si c'est tout bon  
     try{
+        //Informations du produit à ajouter au panier
         let optionProduit = {
             id: canape._id,
             couleur: couleurSelection(),
             nombre: nombreSection(),
         }
+
+        //Chargement du panier actuel
         let panierData = localStorage.getItem("Produit");
         let panier = [];
 
@@ -120,8 +123,29 @@ function setData(canape) {
             panier = JSON.parse(panierData)
         }
 
-        
-        panier.push(optionProduit);
+        let index = 0;        
+        let found = false;
+
+        while(index < panier.length && found === false)
+        {
+            const article = panier[index];
+
+            if(article.id === optionProduit.id && article.couleur === optionProduit.couleur)
+            {
+                article.nombre += optionProduit.nombre;
+                found = true;
+            }
+
+            ++index;
+        }
+
+        if(found === false)
+        {
+            //Ajouter nouvel article au panier
+            panier.push(optionProduit); 
+        }       
+
+        //Enregistrer panier
         localStorage.setItem("Produit",JSON.stringify(panier)); 
         location.replace("cart.html");
         
